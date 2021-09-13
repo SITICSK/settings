@@ -2,7 +2,7 @@
 
 This package is for creating Setting Categories. Recommened with some of direct settings package.
 
-### Implementation
+### LUMEN Implementation
 
 ### 1. Install the package 
 ```
