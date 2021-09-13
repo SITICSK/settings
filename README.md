@@ -4,11 +4,11 @@ This package is for creating Setting Categories. Recommened with some of direct 
 
 ### Implementation
 
-###1. Install the package 
+### 1. Install the package 
 ```
 composer require sitic/settings
 ```
-###2. Add in **bootstrap/app.php**
+### 2. Add in **bootstrap/app.php**
 
 **Config Files**
 ```php
@@ -38,12 +38,12 @@ $app->configure('settings');
 */
 $app->register(\Sitic\Settings\SettingsServiceProvider::class);
 ```
-###3. Run migrations
+### 3. Run migrations
 ```
 php artisan migrate
 ```
 
-###4. Install default settings
+### 4. Install default settings
 ```
 php artisan sitic:settings
 ```
