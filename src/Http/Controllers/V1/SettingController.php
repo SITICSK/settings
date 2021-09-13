@@ -17,11 +17,11 @@ class SettingController extends Controller
 {
 
     /**
-     * Index
+     * Index Settings
      *
      * This endpoint lets you list a settings categories.
      * @authenticated
-     * @queryParam perPage integer List settings per page. Defaults to '10'. Example: 30
+     * @queryParam perPage integer List settings per page. Example: 30
      *
      */
     public function index(Request $request) {
@@ -37,7 +37,7 @@ class SettingController extends Controller
     }
 
     /**
-     * Store
+     * Store Setting
      *
      * This endpoint lets you create a new settings category.
      * @authenticated
@@ -63,7 +63,7 @@ class SettingController extends Controller
     }
 
     /**
-     * Show
+     * Show Setting
      *
      * This endpoint lets you show a settings category.
      * @authenticated
@@ -88,7 +88,7 @@ class SettingController extends Controller
 
 
     /**
-     * Update
+     * Update Setting
      *
      * This endpoint lets you update a settings category.
      * @authenticated
@@ -117,7 +117,7 @@ class SettingController extends Controller
     }
 
     /**
-     * Destroy
+     * Destroy Setting
      *
      * This endpoint lets you destroy a settings category.
      * @authenticated
@@ -135,7 +135,7 @@ class SettingController extends Controller
     }
 
     /**
-     * Restore
+     * Restore Setting
      *
      * This endpoint lets you restore deleted settings category.
      * @authenticated
@@ -144,15 +144,16 @@ class SettingController extends Controller
      */
     public function restore(Request $request, $id) {
         try {
-            $setting = Setting::withTrashed()->findOrFail($id)->restore();
-            return response()->json(['status' => 'success', 'data' => new SettingResource($setting)]);
+            $model = Setting::withTrashed()->findOrFail($id);
+            if ($model) $model->restore();
+            return response()->json(['status' => 'success', 'data' => new SettingResource($model)]);
         } catch (\Exception $exception) {
             return response()->json(['status' => 'error', 'message' => $exception->getMessage()]);
         }
     }
 
     /**
-     * Force Delete
+     * Force Delete Setting
      *
      * This endpoint lets you force delete deleted settings category.
      * @authenticated
@@ -161,8 +162,9 @@ class SettingController extends Controller
      */
     public function forceDelete(Request $request, $id) {
         try {
-            $setting = Setting::withTrashed()->findOrFail($id)->forceDelete();
-            return response()->json(['status' => 'success', 'data' => new SettingResource($setting)]);
+            $model = Setting::withTrashed()->findOrFail($id);
+            if ($model) $model->forceDelete();
+            return response()->json(['status' => 'success', 'data' => new SettingResource($model)]);
         } catch (\Exception $exception) {
             return response()->json(['status' => 'error', 'message' => $exception->getMessage()]);
         }

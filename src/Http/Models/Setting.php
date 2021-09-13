@@ -2,11 +2,11 @@
 
 namespace Sitic\Settings\Http\Models;
 
-use App\Traits\Uuids;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Sitic\Settings\Http\Traits\Uuids;
 
 class Setting extends Model
 {

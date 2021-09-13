@@ -20,11 +20,11 @@ class SettingItemController extends Controller
 {
 
     /**
-     * Index
+     * Index Settings Item
      *
      * This endpoint lets you list a settings items.
      * @authenticated
-     * @queryParam perPage integer List setting items per page. Defaults to '10'. Example: 30
+     * @queryParam perPage integer List setting items per page. Example: 30
      *
      */
     public function index(Request $request) {
@@ -40,7 +40,7 @@ class SettingItemController extends Controller
     }
 
     /**
-     * Store
+     * Store Settings Items
      *
      * This endpoint lets you create a new settings item.
      * @authenticated
@@ -73,7 +73,7 @@ class SettingItemController extends Controller
     }
 
     /**
-     * Show
+     * Show Settings Item
      *
      * This endpoint lets you show a settings item.
      * @authenticated
@@ -96,7 +96,7 @@ class SettingItemController extends Controller
     }
 
     /**
-     * Update
+     * Update Settings Item
      *
      * This endpoint lets you update a settings item.
      * @authenticated
@@ -130,7 +130,7 @@ class SettingItemController extends Controller
     }
 
     /**
-     * Destroy
+     * Destroy Settings Item
      *
      * This endpoint lets you destroy a settings item.
      * @authenticated
@@ -148,7 +148,7 @@ class SettingItemController extends Controller
     }
 
     /**
-     * Restore
+     * Restore Settings Item
      *
      * This endpoint lets you restore deleted settings item.
      * @authenticated
@@ -157,15 +157,16 @@ class SettingItemController extends Controller
      */
     public function restore(Request $request, $id) {
         try {
-            $setting = SettingItem::withTrashed()->findOrFail($id)->restore();
-            return response()->json(['status' => 'success', 'data' => new SettingItemResource($setting)]);
+            $model = SettingItem::withTrashed()->findOrFail($id);
+            if ($model) $model->restore();
+            return response()->json(['status' => 'success', 'data' => new SettingItemResource($model)]);
         } catch (\Exception $exception) {
             return response()->json(['status' => 'error', 'message' => $exception->getMessage()]);
         }
     }
 
     /**
-     * Force Delete
+     * Force Delete Settings Item
      *
      * This endpoint lets you force delete deleted settings item.
      * @authenticated
@@ -174,8 +175,9 @@ class SettingItemController extends Controller
      */
     public function forceDelete(Request $request, $id) {
         try {
-            $setting = SettingItem::withTrashed()->findOrFail($id)->forceDelete();
-            return response()->json(['status' => 'success', 'data' => new SettingItemResource($setting)]);
+            $model = SettingItem::withTrashed()->findOrFail($id);
+            if ($model) $model->forceDelete();
+            return response()->json(['status' => 'success', 'data' => new SettingItemResource($model)]);
         } catch (\Exception $exception) {
             return response()->json(['status' => 'error', 'message' => $exception->getMessage()]);
         }
