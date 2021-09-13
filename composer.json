@@ -1,0 +1,27 @@
+{
+    "name": "sitic/settings",
+    "description": "Categories for Project Settings",
+    "type": "library",
+    "require": {
+        "laravel/lumen": "8.x-dev",
+        "spatie/laravel-permission": "^5.1",
+        "guzzlehttp/guzzle": "^7.3",
+        "laravel/lumen-framework": "^8.0",
+        "cviebrock/eloquent-sluggable": "^8.0",
+        "laravelista/lumen-vendor-publish": "^8.0",
+        "ramsey/uuid": "^4.2"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "David Puzder",
+            "email": "spam@davidpuzder.sk"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "Sitic\\Settings\\": "src/"
+        }
+    }
+}
